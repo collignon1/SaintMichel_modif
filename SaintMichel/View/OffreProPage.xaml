@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SaintMichel.View.OffreProPage"
+               
+             xmlns:viewmodel="clr-namespace:SaintMichel.ViewModel"
+             xmlns:model="clr-namespace:SaintMichel.Model"
+             
+             
+             
+             Title="{Binding Title}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+    </ContentPage.ToolbarItems>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Picker VerticalOptions="Center" ItemsSource="{Binding type_offre}"/>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="4" VerticalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Picker VerticalOptions="Center" ItemsSource="{Binding SecteurAct}"/>
+        </Border>
+
+        <Border BackgroundColor="Orange" Padding="0" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+            <Grid Background="Orange">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.1*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3">
+
+                    <RefreshView x:DataType="viewmodel:ItemViewModel" Command="{Binding LoadItemsCommand}" 
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                        <CollectionView x:Name="ContactsItemView"
+                            ItemsSource="{Binding ObsItems}"
+                            SelectionMode="None">
+                            <!--<CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" 
+                            ItemSpacing="100" />
+                                -->
+                            <!-- Espacement horizontal -->
+                            <!--
+                            </CollectionView.ItemsLayout>-->
+                            <CollectionView.ItemTemplate>
+
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Border>
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="20"/>
+                                            </Border.StrokeShape>
+
+                                            <StackLayout Padding="10" x:DataType="model:ToDoList" BackgroundColor="White">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.5*" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="0.7*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="0.5*" />
+                                                        <RowDefinition Height="0.5*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="gfrg" 
+                                            LineBreakMode="NoWrap"  Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+
+                                                    <Label Text="zrazer" 
+                                            LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+                                                    <Grid Grid.Row="0" Grid.Column="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <Label Text="début :" 
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="13" Grid.Column="0" Grid.Row="0" HorizontalOptions="End"/>
+
+                                                        <Label Text="ftt"
+                                                LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"/>
+
+                                                        <Label Text="fin :" 
+                                                LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="0" Grid.Row="1" HorizontalOptions="End"/>
+
+                                                        <Label Text="gsdgg"
+                                                LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center"/>
+                                                    </Grid>
+
+                                                    <Label Grid.Row="2" FontSize="8"/>
+
+                                                    <Label Text="type" 
+                                                        LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="0" Grid.Row="3"/>
+
+                                                    <Label Text="efzer"
+                                                        LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="0" Grid.Row="4"/>
+
+                                                    <Label Text="secteur" 
+                                                        LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="2" Grid.Row="3" HorizontalOptions="End"/>
+
+                                                    <Label Text="aaa"
+                                                        LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Column="2" Grid.Row="4" HorizontalOptions="End"/>
+
+                                                </Grid>
+
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                            NumberOfTapsRequired="1"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ItemViewModel}}, Path=ItemTappedCommand}"
+                                            CommandParameter="{Binding .}">
+                                                    </TapGestureRecognizer>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </Border>
+                                        <BoxView HeightRequest="5" Color="Transparent" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </RefreshView>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
